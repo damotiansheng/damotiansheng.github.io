@@ -347,13 +347,6 @@
   </url>
   
   <url>
-    <loc>http://damotiansheng.github.io/tags/epoll/</loc>
-    <lastmod>2023-06-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://damotiansheng.github.io/tags/%E8%B6%85%E6%97%B6%E4%BA%8B%E4%BB%B6/</loc>
     <lastmod>2023-06-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -369,6 +362,13 @@
   
   <url>
     <loc>http://damotiansheng.github.io/tags/nginx/</loc>
+    <lastmod>2023-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://damotiansheng.github.io/tags/epoll/</loc>
     <lastmod>2023-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -447,14 +447,14 @@
   </url>
   
   <url>
-    <loc>http://damotiansheng.github.io/categories/fastdfs/</loc>
+    <loc>http://damotiansheng.github.io/categories/hadoop/</loc>
     <lastmod>2023-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://damotiansheng.github.io/categories/hadoop/</loc>
+    <loc>http://damotiansheng.github.io/categories/fastdfs/</loc>
     <lastmod>2023-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
