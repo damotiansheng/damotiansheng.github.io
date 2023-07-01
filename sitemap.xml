@@ -245,7 +245,7 @@
   </url>
   
   <url>
-    <loc>http://damotiansheng.github.io/tools/2016-10-21/hello-world.html</loc>
+    <loc>http://damotiansheng.github.io/hadoop/2017-05-09/hadoop%E4%B9%8Bdebug.html</loc>
     
     <lastmod>2023-06-28</lastmod>
     
@@ -254,7 +254,7 @@
   </url>
   
   <url>
-    <loc>http://damotiansheng.github.io/hadoop/2017-05-09/hadoop%E4%B9%8Bdebug.html</loc>
+    <loc>http://damotiansheng.github.io/tools/2016-10-21/hello-world.html</loc>
     
     <lastmod>2023-06-28</lastmod>
     
@@ -400,6 +400,13 @@
   </url>
   
   <url>
+    <loc>http://damotiansheng.github.io/tags/hadoop/</loc>
+    <lastmod>2023-07-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://damotiansheng.github.io/tags/hexo/</loc>
     <lastmod>2023-07-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -408,13 +415,6 @@
   
   <url>
     <loc>http://damotiansheng.github.io/tags/github/</loc>
-    <lastmod>2023-07-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://damotiansheng.github.io/tags/hadoop/</loc>
     <lastmod>2023-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -500,13 +500,6 @@
   </url>
   
   <url>
-    <loc>http://damotiansheng.github.io/categories/tools/</loc>
-    <lastmod>2023-07-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://damotiansheng.github.io/categories/hadoop/</loc>
     <lastmod>2023-07-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -522,6 +515,13 @@
   
   <url>
     <loc>http://damotiansheng.github.io/categories/hexo/</loc>
+    <lastmod>2023-07-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://damotiansheng.github.io/categories/tools/</loc>
     <lastmod>2023-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
