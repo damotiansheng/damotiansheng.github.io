@@ -6,7 +6,7 @@
   <link href="http://damotiansheng.github.io/atom.xml" rel="self"/>
   
   <link href="http://damotiansheng.github.io/"/>
-  <updated>2023-07-01T00:45:11.026Z</updated>
+  <updated>2023-07-01T06:52:35.872Z</updated>
   <id>http://damotiansheng.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://damotiansheng.github.io/uncategorized/2023-06-29/%E5%A6%82%E4%BD%95%E5%90%91hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87.html"/>
     <id>http://damotiansheng.github.io/uncategorized/2023-06-29/%E5%A6%82%E4%BD%95%E5%90%91hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87.html</id>
     <published>2023-06-29T13:41:13.000Z</published>
-    <updated>2023-07-01T00:45:11.026Z</updated>
+    <updated>2023-07-01T06:52:35.872Z</updated>
     
     <content type="html"><![CDATA[<p>本文演示如何使用hexo + typora 如何方便插入图片到GitHub博客中</p><span id="more"></span><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>博客主目录执行：</p><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-renderer-marked</span><br><span class="line">npm <span class="keyword">install</span> hexo-image-link</span><br></pre></td></tr></table></figure><h2 id="配置-config-yml"><a href="#配置-config-yml" class="headerlink" title="配置_config.yml"></a>配置_config.yml</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure><h2 id="typora配置"><a href="#typora配置" class="headerlink" title="typora配置"></a>typora配置</h2><p>文件 -&gt; 偏好设置 -&gt; 图像：</p><p><img src="/uncategorized/2023-06-29/%E5%A6%82%E4%BD%95%E5%90%91hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/image-20230701084442664.png" alt="image-20230701084442664"></p><h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>hexo new test<br>此时在source&#x2F;_posts目录会生成一个test目录和test.md文件，然后拷贝图片到test.md中，图片会自动复制到test目录,复制图片粘贴到Typora中叫“文章名”的文章后，图片引用路径会变成”文章名”&#x2F;xxx.png，将图片前面的””文章名””目录删除掉，替换即可，即变成: “xxx.png”，最后发布即可，这样在typora中看不到图片，但是在网站上可以看到，如果不替换会出现网站无法展示图片，其引用的图片路径包含重复路径的问题</p><p><img src="/uncategorized/2023-06-29/%E5%A6%82%E4%BD%95%E5%90%91hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/avatar-1688048937816-8.png" alt="avatar"></p>]]></content>
     
