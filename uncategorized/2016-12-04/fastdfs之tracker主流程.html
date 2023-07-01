@@ -22,7 +22,7 @@
 <meta name="twitter:card" content="summary">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/photos/damotiansheng.png">
   
   <link rel="stylesheet" type="text/css" href="/main.0d8e3c.css">
   <style type="text/css">
@@ -32,6 +32,9 @@
     }
   </style>
   
+
+  
+
 
   
 
@@ -239,7 +242,6 @@
 <figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//主线程</span></span><br><span class="line"><span class="comment">// accept a client request and dispatch request to child thread for processing</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> *accept_thread_entrance(<span class="keyword">void</span>* arg)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> server_sock;</span><br><span class="line">	<span class="keyword">int</span> incomesock;</span><br><span class="line">	<span class="keyword">struct</span> sockaddr_in inaddr;</span><br><span class="line">	socklen_t sockaddr_len;</span><br><span class="line">	<span class="keyword">struct</span> nio_thread_data *pThreadData;</span><br><span class="line">	server_sock = (<span class="built_in">long</span>)arg;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span> (g_continue_flag)</span><br><span class="line">	&#123;</span><br><span class="line">		sockaddr_len = sizeof(inaddr);</span><br><span class="line">		incomesock = accept(server_sock, (<span class="keyword">struct</span> sockaddr*)&amp;inaddr, &amp;sockaddr_len);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (incomesock &lt; <span class="number">0</span>) <span class="comment">//error</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (!(errno == EINTR || errno == EAGAIN))</span><br><span class="line">			&#123;</span><br><span class="line">				logError(<span class="string">&quot;file: &quot;</span><span class="keyword">__FILE__</span><span class="string">&quot;, line: %d, &quot;</span> \</span><br><span class="line">					<span class="string">&quot;accept failed, &quot;</span> \</span><br><span class="line">					<span class="string">&quot;errno: %d, error info: %s&quot;</span>, \</span><br><span class="line">					<span class="keyword">__LINE__</span>, errno, STRERROR(errno));</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		pThreadData = g_thread_data + incomesock % g_work_threads;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (write(pThreadData-&gt;pipe_fds[<span class="number">1</span>], &amp;incomesock, \</span><br><span class="line">			sizeof(incomesock)) != sizeof(incomesock)) <span class="comment">// 将得到的client fd写入某个管道中，wakeup child thread</span></span><br><span class="line">		&#123;</span><br><span class="line">			close(incomesock);</span><br><span class="line">			logError(<span class="string">&quot;file: &quot;</span><span class="keyword">__FILE__</span><span class="string">&quot;, line: %d, &quot;</span> \</span><br><span class="line">				<span class="string">&quot;call write failed, &quot;</span> \</span><br><span class="line">				<span class="string">&quot;errno: %d, error info: %s&quot;</span>, \</span><br><span class="line">				<span class="keyword">__LINE__</span>, errno, STRERROR(errno));</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> current_connections;</span><br><span class="line">            current_connections = __sync_add_and_fetch(&amp;g_connection_stat.</span><br><span class="line">                    current_count, <span class="number">1</span>);</span><br><span class="line">			</span><br><span class="line">            <span class="keyword">if</span> (current_connections &gt; g_connection_stat.max_count) </span><br><span class="line">			&#123;</span><br><span class="line">                g_connection_stat.max_count = current_connections;</span><br><span class="line">            &#125;</span><br><span class="line">			</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> NULL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
-
       
         <div class="page-reward">
           <a href="javascript:;" class="page-reward-btn tooltip-top">
@@ -294,57 +296,6 @@
       
 
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://damotiansheng.github.io/uncategorized/2016-12-04/fastdfs%E4%B9%8Btracker%E4%B8%BB%E6%B5%81%E7%A8%8B.html" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
       <div class="clearfix"></div>
     </div>
   </div>
@@ -375,25 +326,23 @@
 
 
 
-  <section id="comments">
-<!--高速版，加载速度快，使用前需测试页面的兼容性-->
-<div id="SOHUCS" sid="fastdfs之tracker主流程" style="padding: 0px 30px 0px 46px;"></div>
+
+<div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
-  (function(){
-    var appid = 'cywKMUL5E',
-    conf = '98b84d10a6dde6fa59088d3b3641a3ad';
-    var doc = document,
-    s = doc.createElement('script'),
-    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
-    s.type = 'text/javascript';
-    s.charset = 'utf-8';
-    s.src =  'https://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
-    h.insertBefore(s,h.firstChild);
-    window.SCS_NO_IFRAME = true;
-  })()
-</script>    
-  </section>
-  
+var gitment = new Gitment({
+  id: "http://damotiansheng.github.io/uncategorized/2016-12-04/fastdfs%E4%B9%8Btracker%E4%B8%BB%E6%B5%81%E7%A8%8B.html",
+  owner: 'damotiansheng',
+  repo: 'damotiansheng.github.io',
+  oauth: {
+    client_id: '853372c8a062ac0fadee',
+    client_secret: '16e1617b7663913eba1d5fd5c0906a1cc8e8f342',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+
 
 
           </div>
@@ -410,7 +359,7 @@
       	</div>
     </div>
   </div>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+<!-- <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"> -->
 </script>
 
 
@@ -566,15 +515,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
