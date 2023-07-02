@@ -326,6 +326,24 @@
             </span>
           </div>
           </a>
+      
+      <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="/css/gitment.css">
+<script src="/js/gitment.js"></script>
+<script>
+var gitment = new Gitment({
+  id: '#{page.title}' ,
+  owner: 'damotiansheng',
+  repo: 'damotiansheng.github.io',
+  oauth: {
+    client_id: '853372c8a062ac0fadee',
+    client_secret: '16e1617b7663913eba1d5fd5c0906a1cc8e8f342',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+
+    
         </div>
       
     </div>
@@ -379,7 +397,6 @@
     </a>
   
 </nav>
-
 
 
 
