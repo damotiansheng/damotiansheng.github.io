@@ -492,6 +492,27 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>http://damotiansheng.github.io/tags/sora/</loc>
+    <lastmod>2024-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://damotiansheng.github.io/tags/openai-sora/</loc>
+    <lastmod>2024-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://damotiansheng.github.io/tags/ai-video-generator/</loc>
+    <lastmod>2024-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
